@@ -32,7 +32,7 @@ export const beamConditions: BeamCondition[] = [
   },
   {
     name: "Cantilever, Uniform Distributed Load",
-    calculateDeflection: ({ w = 0, L, E, I }) => (w * 1000 * Math.pow(L * 1000, 4)) / (8 * E * I),
+    calculateDeflection: ({ w = 0, L, E, I }) => (w * Math.pow(L * 1000, 4)) / (8 * E * I),
     calculateShear: ({ w = 0, L }) => w * L,
     calculateMoments: ({ w = 0, L }) => ({ max: (w * Math.pow(L, 2)) / 2 })
   },
@@ -44,7 +44,7 @@ export const beamConditions: BeamCondition[] = [
   },
   {
     name: "Simply Supported, Uniform Distributed Load",
-    calculateDeflection: ({ w = 0, L, E, I }) => (5 * w * 1000 * Math.pow(L * 1000, 4)) / (384 * E * I),
+    calculateDeflection: ({ w = 0, L, E, I }) => (5 * w * Math.pow(L * 1000, 4)) / (384 * E * I),
     calculateShear: ({ w = 0, L }) => (w * L) / 2,
     calculateMoments: ({ w = 0, L }) => ({ max: (w * Math.pow(L, 2)) / 8 })
   },
@@ -64,7 +64,7 @@ export const beamConditions: BeamCondition[] = [
   },
   {
     name: "Fixed-Fixed, Uniform Distributed Load",
-    calculateDeflection: ({ w = 0, L, E, I }) => (w * 1000 * Math.pow(L * 1000, 4)) / (384 * E * I),
+    calculateDeflection: ({ w = 0, L, E, I }) => (w * Math.pow(L * 1000, 4)) / (384 * E * I),
     calculateShear: ({ w = 0, L }) => (w * L) / 2,
     calculateMoments: ({ w = 0, L }) => {
       const hogging = -(w * Math.pow(L, 2)) / 12;  // At supports
