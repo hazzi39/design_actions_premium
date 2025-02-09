@@ -1,4 +1,15 @@
-export const sectionData = [
+export interface StructuralData {
+  Section: string;
+  Designation: string;
+  Ix: number;
+  Iy: number;
+  E: number;
+  Phi_Mxx_kNm?: number;
+  Phi_Mxy_kNm?: number;
+  Phi_Vv_kN?: number;
+}
+
+export const structuralData: StructuralData[] = [
   {
     Section: "Welded Beams",
     Designation: "1200WB423",
@@ -3625,18 +3636,8 @@ export const sectionData = [
     Iy: 6806,
     E: 200000
 }
-] as const;
+];
 
-export const sectionTypes = [...new Set(sectionData.map(d => d["Section Type"]))];
-
-export function getDesignationsForType(sectionType: string) {
-  return sectionData
-    .filter(d => d["Section Type"] === sectionType)
-    .map(d => d["Designation"]);
-}
-
-export function getSectionData(sectionType: string, designation: string) {
-  return sectionData.find(
-    d => d["Section Type"] === sectionType && d["Designation"] === designation
-  );
-}
+export const uniqueSections = Array.from(
+  new Set(structuralData.map((item) => item.Section))
+);
